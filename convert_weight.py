@@ -7,7 +7,7 @@ import math
 import torch
 import numpy as np
 from torchvision import utils
-
+import legacy
 from model import Generator, Discriminator
 
 
@@ -233,9 +233,15 @@ if __name__ == "__main__":
     tflib.init_tf()
 
     with open(args.path, "rb") as f:
+        #print(pickle.load(f))
         generator, discriminator, g_ema = pickle.load(f)
+        #generator, discriminator, g_ema, _, _, _ = pickle.load(f)
+        #print(generator)
 
-    size = g_ema.output_shape[2]
+    # with dnnlib.util.open_url(args.path) as f:
+    #     g_ema = legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
+
+    size = 512
 
     n_mlp = 0
     mapping_layers_names = g_ema.__getstate__()['components']['mapping'].list_layers()

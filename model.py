@@ -8,8 +8,13 @@ from torch import nn
 from torch.nn import functional as F
 from torch.autograd import Function
 
-from op import FusedLeakyReLU, fused_leaky_relu, upfirdn2d, conv2d_gradfix
+#from op.fused_act import FusedLeakyReLU
 
+#from op.fused_act import FusedLeakyReLU
+
+#fused_leaky_relu, upfirdn2d
+#from op import FusedLeakyReLU #, conv2d_gradfix
+FusedLeakyReLU = nn.LeakyReLU()
 
 class PixelNorm(nn.Module):
     def __init__(self):
